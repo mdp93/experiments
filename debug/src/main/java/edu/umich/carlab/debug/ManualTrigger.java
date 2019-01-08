@@ -1,6 +1,6 @@
 package edu.umich.carlab.debug;
 
-import edu.umich.carlab.triggers.TriggerSession;
+import edu.umich.carlab.TriggerSession;
 import edu.umich.carlab.utils.Utilities;
 
 public class ManualTrigger extends TriggerSession {

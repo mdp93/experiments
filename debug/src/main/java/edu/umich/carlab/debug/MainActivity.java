@@ -12,12 +12,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import edu.umich.carlab.clog.CLog;
 import edu.umich.carlab.clog.CLogDatabaseHelper;
+import edu.umich.carlab.io.AppLoader;
 import edu.umich.carlab.utils.Utilities;
 import edu.umich.carlabui.CarLabUIBuilder;
 import edu.umich.carlabui.R;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import static edu.umich.carlab.Constants.*;
 import static edu.umich.carlab.debug.Constants.ManualChoiceKey;
@@ -57,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
          *****************************************************************/
         mainDisplayClass = PhoneCollectApp.class;
         triggerClass = ManualTrigger.class;
-        Set<String> staticClassNames = new HashSet<>();
-        staticClassNames.add(mainDisplayClass.getCanonicalName());
+
+        edu.umich.carlab.io.AppLoader.getInstance().loadApp(PhoneCollectApp.class);
 
         experimentID = getApplication().getResources().getInteger(edu.umich.carlab.debug.R.integer.experimentID);
         version = getApplication().getResources().getInteger(edu.umich.carlab.debug.R.integer.version);
@@ -74,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 .putInt(Experiment_Version_Number, version)
                 .putString(Experiment_Shortname, shortname)
                 .putBoolean(Experiment_New_Version_Detected, false)
-                .putStringSet(Static_Apps, staticClassNames)
                 .putString(Main_Activity, MainActivity.class.getCanonicalName())
                 .apply();
 
