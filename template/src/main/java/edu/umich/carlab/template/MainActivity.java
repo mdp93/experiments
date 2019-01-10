@@ -1,4 +1,4 @@
-package edu.umich.carlab.debug;
+package edu.umich.carlab.template;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import edu.umich.carlabui.R;
 
 
 import static edu.umich.carlab.Constants.*;
-import static edu.umich.carlab.debug.Constants.ManualChoiceKey;
+import static edu.umich.carlab.template.Constants.ManualChoiceKey;
 
 public class MainActivity extends AppCompatActivity {
     final String TAG = "MainActivity";
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         CLogDatabaseHelper.initializeIfNeeded(this);
 
 
-        personID = getString(edu.umich.carlab.debug.R.string.uid);
+        personID = getString(edu.umich.carlab.template.R.string.uid);
 
 
         /*****************************************************************
@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         instance.loadApp(AppImpl.class);
         instance.loadMiddleware(new MiddlewareImpl());
 
-        experimentID = getApplication().getResources().getInteger(edu.umich.carlab.debug.R.integer.experimentID);
-        version = getApplication().getResources().getInteger(edu.umich.carlab.debug.R.integer.version);
-        shortname = getString(edu.umich.carlab.debug.R.string.shortname);
+        experimentID = getApplication().getResources().getInteger(edu.umich.carlab.template.R.integer.experimentID);
+        version = getApplication().getResources().getInteger(edu.umich.carlab.template.R.integer.version);
+        shortname = getString(edu.umich.carlab.template.R.string.shortname);
 
         CLog.v(TAG, "Main display class = " + mainDisplayClass.getName());
         CLog.v(TAG, "Trigger class = " + triggerClass.getName());

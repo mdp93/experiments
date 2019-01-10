@@ -1,4 +1,4 @@
-package edu.umich.carlab.debug;
+package edu.umich.carlab.template;
 
 import android.content.Context;
 import android.util.Pair;
