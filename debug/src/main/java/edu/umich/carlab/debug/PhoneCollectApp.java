@@ -5,6 +5,7 @@ import android.util.Pair;
 import edu.umich.carlab.CLDataProvider;
 import edu.umich.carlab.loadable.SensorListAppBase;
 import edu.umich.carlab.sensors.PhoneSensors;
+import edu.umich.carlab.world_aligned_imu.VehicleAlignmentUtil;
 
 
 /**
@@ -20,7 +21,8 @@ public class PhoneCollectApp extends SensorListAppBase {
         sensors.add(new Pair<>(PhoneSensors.DEVICE, PhoneSensors.GPS));
         sensors.add(new Pair<>(PhoneSensors.DEVICE, PhoneSensors.ACCEL));
         sensors.add(new Pair<>(PhoneSensors.DEVICE, PhoneSensors.GYRO));
-//        sensors.add(new Pair<>(edu.umich.carlab.sources.apps.VehicleAlignment.APP, edu.umich.carlab.sources.apps.VehicleAlignment.ACCEL));
-//        sensors.add(new Pair<>(edu.umich.carlab.sources.apps.VehicleAlignment.APP, edu.umich.carlab.sources.apps.VehicleAlignment.GYRO));
+
+        sensors.add(new Pair<>(VehicleAlignmentUtil.APP, VehicleAlignmentUtil.ACCEL));
+        sensors.add(new Pair<>(VehicleAlignmentUtil.APP, VehicleAlignmentUtil.GYRO));
     }
 }

@@ -14,13 +14,14 @@ import edu.umich.carlab.clog.CLog;
 import edu.umich.carlab.clog.CLogDatabaseHelper;
 import edu.umich.carlab.io.AppLoader;
 import edu.umich.carlab.utils.Utilities;
+import edu.umich.carlab.world_aligned_imu.VehicleAlignmentApp;
+import edu.umich.carlab.world_aligned_imu.VehicleAlignmentUtil;
 import edu.umich.carlabui.CarLabUIBuilder;
 import edu.umich.carlabui.R;
 
 
 import static edu.umich.carlab.Constants.*;
 import static edu.umich.carlab.debug.Constants.ManualChoiceKey;
-
 
 public class MainActivity extends AppCompatActivity {
     final String TAG = "MainActivity";
@@ -57,7 +58,12 @@ public class MainActivity extends AppCompatActivity {
         mainDisplayClass = PhoneCollectApp.class;
         triggerClass = ManualTrigger.class;
 
-        edu.umich.carlab.io.AppLoader.getInstance().loadApp(PhoneCollectApp.class);
+
+
+        AppLoader instance = AppLoader.getInstance();
+        instance.loadApp(PhoneCollectApp.class);
+        instance.loadApp(VehicleAlignmentApp.class);
+        instance.loadMiddleware(new VehicleAlignmentUtil());
 
         experimentID = getApplication().getResources().getInteger(edu.umich.carlab.debug.R.integer.experimentID);
         version = getApplication().getResources().getInteger(edu.umich.carlab.debug.R.integer.version);
