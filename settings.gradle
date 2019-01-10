@@ -1,1 +1,1 @@
-include ':debug'
+include ':debug', ':watchfon'
