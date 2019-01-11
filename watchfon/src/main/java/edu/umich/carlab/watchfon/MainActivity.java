@@ -14,8 +14,6 @@ import edu.umich.carlab.clog.CLog;
 import edu.umich.carlab.clog.CLogDatabaseHelper;
 import edu.umich.carlab.io.AppLoader;
 import edu.umich.carlab.utils.Utilities;
-import edu.umich.carlab.world_aligned_imu.AppImpl;
-import edu.umich.carlab.world_aligned_imu.MiddlewareImpl;
 import edu.umich.carlabui.CarLabUIBuilder;
 import edu.umich.carlabui.R;
 
@@ -52,18 +50,51 @@ public class MainActivity extends AppCompatActivity {
         personID = getString(edu.umich.carlab.watchfon.R.string.uid);
 
 
+
+
+
         /*****************************************************************
          * Begin per-user customization
          *****************************************************************/
-        mainDisplayClass = PhoneCollectApp.class;
+        mainDisplayClass = MainApp.class;
         triggerClass = ManualTrigger.class;
 
 
-
+        /** Loading all dependencies */
         AppLoader instance = AppLoader.getInstance();
-        instance.loadApp(PhoneCollectApp.class);
-        instance.loadApp(AppImpl.class);
-        instance.loadMiddleware(new MiddlewareImpl());
+        instance.loadApp(MainApp.class);
+
+        // Estimates rely on world aligned IMU
+        instance.loadApp(edu.umich.carlab.world_aligned_imu.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.world_aligned_imu.MiddlewareImpl());
+
+
+        // All estimates
+        instance.loadApp(edu.umich.carlab.watchfon_speed.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_speed.MiddlewareImpl());
+        instance.loadApp(edu.umich.carlab.watchfon_gear.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_gear.MiddlewareImpl());
+        instance.loadApp(edu.umich.carlab.watchfon_fuel.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_fuel.MiddlewareImpl());
+        instance.loadApp(edu.umich.carlab.watchfon_odometer.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_odometer.MiddlewareImpl());
+        instance.loadApp(edu.umich.carlab.watchfon_rpm.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_rpm.MiddlewareImpl());
+        instance.loadApp(edu.umich.carlab.watchfon_steering.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_steering.MiddlewareImpl());
+
+        // Funnelled through this class
+        instance.loadApp(edu.umich.carlab.watchfon_estimates.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_estimates.MiddlewareImpl());
+
+        // Spoofed sensors from OpenXC
+        instance.loadApp(edu.umich.carlab.watchfon_spoofed_sensors.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl());
+
+        // Intrusion detection compares the estimates with spoofed
+        instance.loadApp(edu.umich.carlab.watchfon_intrusion_detection.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_intrusion_detection.MiddlewareImpl());
+        /** End of dependencies */
 
         experimentID = getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.experimentID);
         version = getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.version);
