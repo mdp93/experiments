@@ -43,8 +43,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'com.github.umich-carlab.carlab:carlabui:-040c762c7d'
-    implementation 'com.github.umich-carlab.carlab:libcarlab:-040c762c7d'
+    implementation 'com.github.umich-carlab.carlab:carlabui:-SNAPSHOT'
+    implementation 'com.github.umich-carlab.carlab:libcarlab:-SNAPSHOT'
 //    implementation 'com.github.umich-carlab:carlab:040c762c7d'
     implementation 'com.github.umich-carlab:middleware:-SNAPSHOT'
 }
