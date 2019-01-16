@@ -26,6 +26,10 @@ public class MainApp extends SensorListAppBase {
         sensors.add(new Pair<>(edu.umich.carlab.world_aligned_imu.MiddlewareImpl.APP, edu.umich.carlab.world_aligned_imu.MiddlewareImpl.ACCEL));
         sensors.add(new Pair<>(edu.umich.carlab.world_aligned_imu.MiddlewareImpl.APP, edu.umich.carlab.world_aligned_imu.MiddlewareImpl.GYRO));
         sensors.add(new Pair<>(edu.umich.carlab.watchfon_estimates.MiddlewareImpl.APP, MiddlewareImpl.SPEED));
+        sensors.add(new Pair<>(edu.umich.carlab.watchfon_estimates.MiddlewareImpl.APP, MiddlewareImpl.ODOMETER));
+        sensors.add(new Pair<>(edu.umich.carlab.watchfon_estimates.MiddlewareImpl.APP, MiddlewareImpl.FUEL));
+        sensors.add(new Pair<>(edu.umich.carlab.watchfon_estimates.MiddlewareImpl.APP, MiddlewareImpl.GEAR));
+        sensors.add(new Pair<>(edu.umich.carlab.watchfon_estimates.MiddlewareImpl.APP, MiddlewareImpl.ENGINERPM));
         sensors.add(new Pair<>(edu.umich.carlab.watchfon_estimates.MiddlewareImpl.APP, MiddlewareImpl.STEERING));
 
     }

@@ -72,16 +72,18 @@ public class MainActivity extends AppCompatActivity {
         // All estimates
         instance.loadApp(edu.umich.carlab.watchfon_speed.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_speed.MiddlewareImpl());
-        instance.loadApp(edu.umich.carlab.watchfon_gear.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_gear.MiddlewareImpl());
+
+//        instance.loadApp(edu.umich.carlab.watchfon_gear.AppImpl.class);
+//        instance.loadMiddleware(new edu.umich.carlab.watchfon_gear.MiddlewareImpl());
         instance.loadApp(edu.umich.carlab.watchfon_fuel.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_fuel.MiddlewareImpl());
         instance.loadApp(edu.umich.carlab.watchfon_odometer.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_odometer.MiddlewareImpl());
-        instance.loadApp(edu.umich.carlab.watchfon_rpm.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_rpm.MiddlewareImpl());
-        instance.loadApp(edu.umich.carlab.watchfon_steering.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_steering.MiddlewareImpl());
+
+//        instance.loadApp(edu.umich.carlab.watchfon_rpm.AppImpl.class);
+//        instance.loadMiddleware(new edu.umich.carlab.watchfon_rpm.MiddlewareImpl());
+//        instance.loadApp(edu.umich.carlab.watchfon_steering.AppImpl.class);
+//        instance.loadMiddleware(new edu.umich.carlab.watchfon_steering.MiddlewareImpl());
 
         // Funnelled through this class
         instance.loadApp(edu.umich.carlab.watchfon_estimates.AppImpl.class);
