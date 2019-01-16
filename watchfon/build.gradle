@@ -43,8 +43,23 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'com.github.umich-carlab.carlab:carlabui:-SNAPSHOT'
-    implementation 'com.github.umich-carlab.carlab:libcarlab:-SNAPSHOT'
-//    implementation 'com.github.umich-carlab:carlab:040c762c7d'
-    implementation 'com.github.umich-carlab:middleware:-SNAPSHOT'
+    // implementation 'com.github.umich-carlab.carlab:carlabui:-SNAPSHOT'
+    // implementation 'com.github.umich-carlab.carlab:libcarlab:-SNAPSHOT'
+    // implementation 'com.github.umich-carlab:middleware:-SNAPSHOT'
+
+    implementation project(':carlabui')
+    implementation project(':libcarlab')
+
+    implementation project(':watchfon_fuel')
+    implementation project(':watchfon_gear')
+    implementation project(':watchfon_rpm')
+    implementation project(':watchfon_steering')
+    implementation project(':watchfon_speed')
+    implementation project(':watchfon_odometer')
+
+    implementation project(':watchfon_estimates')
+    implementation project(':watchfon_spoofed_sensors')
+
+    implementation project(':world_aligned_imu')
+    implementation project(':watchfon_intrusion_detection')
 }
