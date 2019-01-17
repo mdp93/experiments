@@ -69,27 +69,35 @@ public class MainActivity extends AppCompatActivity {
         instance.loadMiddleware(new edu.umich.carlab.world_aligned_imu.MiddlewareImpl());
 
 
-        // All estimates
+        // Speed
         instance.loadApp(edu.umich.carlab.watchfon_speed.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_speed.MiddlewareImpl());
 
-//        instance.loadApp(edu.umich.carlab.watchfon_gear.AppImpl.class);
-//        instance.loadMiddleware(new edu.umich.carlab.watchfon_gear.MiddlewareImpl());
+        // Gear
+        instance.loadApp(edu.umich.carlab.watchfon_gear.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_gear.MiddlewareImpl());
+
+        // Fuel
         instance.loadApp(edu.umich.carlab.watchfon_fuel.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_fuel.MiddlewareImpl());
+
+        // Odometer
         instance.loadApp(edu.umich.carlab.watchfon_odometer.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_odometer.MiddlewareImpl());
 
-//        instance.loadApp(edu.umich.carlab.watchfon_rpm.AppImpl.class);
-//        instance.loadMiddleware(new edu.umich.carlab.watchfon_rpm.MiddlewareImpl());
-//        instance.loadApp(edu.umich.carlab.watchfon_steering.AppImpl.class);
-//        instance.loadMiddleware(new edu.umich.carlab.watchfon_steering.MiddlewareImpl());
+        // RPM
+        instance.loadApp(edu.umich.carlab.watchfon_rpm.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_rpm.MiddlewareImpl());
+
+        // Steering wheel angle
+        instance.loadApp(edu.umich.carlab.watchfon_steering.AppImpl.class);
+        instance.loadMiddleware(new edu.umich.carlab.watchfon_steering.MiddlewareImpl());
 
         // Funnelled through this class
         instance.loadApp(edu.umich.carlab.watchfon_estimates.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_estimates.MiddlewareImpl());
 
-        // Spoofed sensors from OpenXC
+         // Spoofed sensors from OpenXC
         instance.loadApp(edu.umich.carlab.watchfon_spoofed_sensors.AppImpl.class);
         instance.loadMiddleware(new edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl());
 

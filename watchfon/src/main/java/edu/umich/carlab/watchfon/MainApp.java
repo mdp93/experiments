@@ -14,7 +14,7 @@ import edu.umich.carlab.watchfon_estimates.MiddlewareImpl;
  * Created by arunganesan on 6/24/18.
  */
 
-public class MainApp extends SensorStreamAppBase {
+public class MainApp extends SensorListAppBase {
     public MainApp(CLDataProvider cl, Context context) {
         super(cl, context);
         name = "PhoneCollectApp";
@@ -36,6 +36,7 @@ public class MainApp extends SensorStreamAppBase {
         subscribe(watchfon_estimates, MiddlewareImpl.ENGINERPM);
         subscribe(watchfon_estimates, MiddlewareImpl.STEERING);
 
-        addLineGraph(world_aligned_imu, edu.umich.carlab.world_aligned_imu.MiddlewareImpl.ACCEL_Y);
+        subscribe(edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl.APP, edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl.STEERING);
+        //        addLineGraph(world_aligned_imu, edu.umich.carlab.world_aligned_imu.MiddlewareImpl.ACCEL_Y);
     }
 }
