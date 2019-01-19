@@ -13,15 +13,17 @@ import android.widget.FrameLayout;
 import edu.umich.carlab.clog.CLog;
 import edu.umich.carlab.clog.CLogDatabaseHelper;
 import edu.umich.carlab.io.AppLoader;
+import edu.umich.carlab.loadable.Middleware;
 import edu.umich.carlab.utils.Utilities;
 import edu.umich.carlabui.CarLabUIBuilder;
+import edu.umich.carlabui.ExperimentBaseActivity;
 import edu.umich.carlabui.R;
 
 
 import static edu.umich.carlab.Constants.*;
 import static edu.umich.carlab.watchfon.Constants.ManualChoiceKey;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ExperimentBaseActivity {
     final String TAG = "MainActivity";
 
     SharedPreferences prefs;
@@ -30,25 +32,32 @@ public class MainActivity extends AppCompatActivity {
     String shortname = "";
 
     Class<?> triggerClass;
-    CarLabUIBuilder uiBuilder;
+//    CarLabUIBuilder uiBuilder;
     Button triggerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.customizable);
+//        setContentView(R.layout.customizable);
         View contentView = findViewById(android.R.id.content);
 
         String devAddr = "";
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String personID;
         CLogDatabaseHelper.initializeIfNeeded(this);
 
-
-        personID = getString(edu.umich.carlab.watchfon.R.string.uid);
-
+        prefs.edit().putString(
+                UID_key,
+                getString(
+                        edu
+                        .umich
+                        .carlab
+                        .watchfon
+                        .R
+                        .string
+                        .uid)
+        ).apply();
 
 
 
@@ -65,45 +74,32 @@ public class MainActivity extends AppCompatActivity {
         instance.loadApp(MainApp.class);
 
         // Estimates rely on world aligned IMU
-        instance.loadApp(edu.umich.carlab.world_aligned_imu.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.world_aligned_imu.MiddlewareImpl());
+        instance.loadApps(new Class<?>[]{
+                edu.umich.carlab.world_aligned_imu.AppImpl.class,
+                edu.umich.carlab.watchfon_speed.AppImpl.class,
+                edu.umich.carlab.watchfon_gear.AppImpl.class,
+                edu.umich.carlab.watchfon_fuel.AppImpl.class,
+                edu.umich.carlab.watchfon_odometer.AppImpl.class,
+                edu.umich.carlab.watchfon_rpm.AppImpl.class,
+                edu.umich.carlab.watchfon_steering.AppImpl.class,
+                edu.umich.carlab.watchfon_estimates.AppImpl.class,
+                edu.umich.carlab.watchfon_spoofed_sensors.AppImpl.class,
+                edu.umich.carlab.watchfon_intrusion_detection.AppImpl.class,
+        });
 
 
-        // Speed
-        instance.loadApp(edu.umich.carlab.watchfon_speed.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_speed.MiddlewareImpl());
-
-        // Gear
-        instance.loadApp(edu.umich.carlab.watchfon_gear.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_gear.MiddlewareImpl());
-
-        // Fuel
-        instance.loadApp(edu.umich.carlab.watchfon_fuel.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_fuel.MiddlewareImpl());
-
-        // Odometer
-        instance.loadApp(edu.umich.carlab.watchfon_odometer.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_odometer.MiddlewareImpl());
-
-        // RPM
-        instance.loadApp(edu.umich.carlab.watchfon_rpm.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_rpm.MiddlewareImpl());
-
-        // Steering wheel angle
-        instance.loadApp(edu.umich.carlab.watchfon_steering.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_steering.MiddlewareImpl());
-
-        // Funnelled through this class
-        instance.loadApp(edu.umich.carlab.watchfon_estimates.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_estimates.MiddlewareImpl());
-
-         // Spoofed sensors from OpenXC
-        instance.loadApp(edu.umich.carlab.watchfon_spoofed_sensors.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl());
-
-        // Intrusion detection compares the estimates with spoofed
-        instance.loadApp(edu.umich.carlab.watchfon_intrusion_detection.AppImpl.class);
-        instance.loadMiddleware(new edu.umich.carlab.watchfon_intrusion_detection.MiddlewareImpl());
+        instance.loadMiddlewares(new Middleware[] {
+                new edu.umich.carlab.world_aligned_imu.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_speed.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_gear.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_fuel.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_odometer.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_rpm.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_steering.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_estimates.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_intrusion_detection.MiddlewareImpl()
+        });
         /** End of dependencies */
 
         experimentID = getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.experimentID);
@@ -112,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         CLog.v(TAG, "Main display class = " + mainDisplayClass.getName());
         CLog.v(TAG, "Trigger class = " + triggerClass.getName());
-        CLog.v(TAG, String.format("Start. UID=%s, SDK=%d", personID, Build.VERSION.SDK_INT));
+        // CLog.v(TAG, String.format("Start. UID=%s, SDK=%d", personID, Build.VERSION.SDK_INT));
 
         prefs
                 .edit()
@@ -123,12 +119,12 @@ public class MainActivity extends AppCompatActivity {
                 .putString(Main_Activity, MainActivity.class.getCanonicalName())
                 .apply();
 
-        uiBuilder = new CarLabUIBuilder(this, contentView, personID, devAddr, version, mainDisplayClass);
+//        uiBuilder = new CarLabUIBuilder(this, contentView, personID, devAddr, version, mainDisplayClass);
         /**************************************************************/
 
-        Utilities.scheduleOnce(this, triggerClass, 0);
-        uiBuilder.onCreate();
-        addManualTriggerButton();
+//        Utilities.scheduleOnce(this, triggerClass, 0);
+//        uiBuilder.onCreate();
+//        addManualTriggerButton();
 
     }
 
@@ -148,24 +144,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isOn = prefs.getBoolean(ManualChoiceKey, false);
                 prefs.edit().putBoolean(ManualChoiceKey, !isOn).commit();
-                updateTriggerButton();
+//                updateTriggerButton();
                 sendBroadcast(new Intent(MainActivity.this, triggerClass));
             }
         });
     }
 
 
-    void updateTriggerButton() {
-        boolean isOn = prefs.getBoolean(ManualChoiceKey, false);
-        triggerButton.setText(isOn ? "Turn Off" : "Turn On");
-    }
-
 
     @Override
     public void onResume() {
         super.onResume();
-        uiBuilder.onResume();
-        updateTriggerButton();
+//        uiBuilder.onResume();
+//        updateTriggerButton();
 
     }
 
@@ -175,14 +166,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        uiBuilder.onPause();
+//        uiBuilder.onPause();
     }
 
 
     @Override
     public void onStop() {
         super.onStop();
-        uiBuilder.onStop();
+//        uiBuilder.onStop();
     }
 
 }
