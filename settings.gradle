@@ -17,4 +17,4 @@ project(':watchfon_fuel').projectDir = new File(settingsDir, '../middleware/watc
 project(':watchfon_gear').projectDir = new File(settingsDir, '../middleware/watchfon_gear')
 project(':watchfon_spoofed_sensors').projectDir = new File(settingsDir, '../middleware/watchfon_spoofed_sensors')
 project(':watchfon_intrusion_detection').projectDir = new File(settingsDir, '../middleware/watchfon_intrusion_detection')
-project(':watchfon_estimates').projectDir = new File(settingsDir, '../middleware/watchfon_estimates')
+project(':watchfon_estimates').projectDir = new File(settingsDir, '../middleware/watchfon_estimates'), ':librecan'
