@@ -38,10 +38,7 @@ public class MainActivity extends ExperimentBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.customizable);
-        View contentView = findViewById(android.R.id.content);
 
-        String devAddr = "";
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -66,8 +63,7 @@ public class MainActivity extends ExperimentBaseActivity {
          * Begin per-user customization
          *****************************************************************/
         mainDisplayClass = MainApp.class;
-        triggerClass = ManualTrigger.class;
-
+//        triggerClass = ManualTrigger.class;
 
         /** Loading all dependencies */
         AppLoader instance = AppLoader.getInstance();
@@ -107,8 +103,7 @@ public class MainActivity extends ExperimentBaseActivity {
         shortname = getString(edu.umich.carlab.watchfon.R.string.shortname);
 
         CLog.v(TAG, "Main display class = " + mainDisplayClass.getName());
-        CLog.v(TAG, "Trigger class = " + triggerClass.getName());
-        // CLog.v(TAG, String.format("Start. UID=%s, SDK=%d", personID, Build.VERSION.SDK_INT));
+//        CLog.v(TAG, "Trigger class = " + triggerClass.getName());
 
         prefs
                 .edit()
@@ -128,52 +123,5 @@ public class MainActivity extends ExperimentBaseActivity {
 
     }
 
-
-    void addManualTriggerButton() {
-        FrameLayout layout = findViewById(R.id.moduleSpecific);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                ActionBar.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT
-        );
-        triggerButton = new Button(this);
-        triggerButton.setLayoutParams(params);
-        layout.addView(triggerButton);
-
-        triggerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean isOn = prefs.getBoolean(ManualChoiceKey, false);
-                prefs.edit().putBoolean(ManualChoiceKey, !isOn).commit();
-//                updateTriggerButton();
-                sendBroadcast(new Intent(MainActivity.this, triggerClass));
-            }
-        });
-    }
-
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        uiBuilder.onResume();
-//        updateTriggerButton();
-
-    }
-
-
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-//        uiBuilder.onPause();
-    }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-//        uiBuilder.onStop();
-    }
 
 }

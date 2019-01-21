@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/debug" />
             <option value="$PROJECT_DIR$/librecan" />
             <option value="$PROJECT_DIR$/watchfon" />
+            <option value="$PROJECT_DIR$/../middleware/librecan_middleware" />
             <option value="$PROJECT_DIR$/../middleware/watchfon_estimates" />
             <option value="$PROJECT_DIR$/../middleware/watchfon_fuel" />
             <option value="$PROJECT_DIR$/../middleware/watchfon_gear" />
