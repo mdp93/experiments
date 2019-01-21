@@ -44,7 +44,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 //    implementation 'com.github.umich-carlab:carlab:3eeae55855'
-    implementation 'com.github.umich-carlab.carlab:carlabui:3eeae55855'
-    implementation 'com.github.umich-carlab.carlab:libcarlab:3eeae55855'
-    implementation 'com.github.umich-carlab:middleware:-SNAPSHOT'
+//    implementation 'com.github.umich-carlab.carlab:carlabui:3eeae55855'
+//    implementation 'com.github.umich-carlab.carlab:libcarlab:3eeae55855'
+//    implementation 'com.github.umich-carlab:middleware:-SNAPSHOT'
+    implementation project(':libcarlab')
+    implementation project(':carlabui')
 }
