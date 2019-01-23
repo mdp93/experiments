@@ -1,69 +1,27 @@
 package edu.umich.carlab.watchfon;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import edu.umich.carlab.clog.CLog;
 import edu.umich.carlab.clog.CLogDatabaseHelper;
 import edu.umich.carlab.io.AppLoader;
 import edu.umich.carlab.loadable.Middleware;
-import edu.umich.carlab.utils.Utilities;
-import edu.umich.carlabui.CarLabUIBuilder;
 import edu.umich.carlabui.ExperimentBaseActivity;
-import edu.umich.carlabui.R;
-
 
 import static edu.umich.carlab.Constants.*;
-import static edu.umich.carlab.watchfon.Constants.ManualChoiceKey;
 
 public class MainActivity extends ExperimentBaseActivity {
     final String TAG = "MainActivity";
 
     SharedPreferences prefs;
-    Class<?> mainDisplayClass;
-    int version, experimentID;
-    String shortname = "";
-
-    Class<?> triggerClass;
-//    CarLabUIBuilder uiBuilder;
-    Button triggerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         CLogDatabaseHelper.initializeIfNeeded(this);
-
-        prefs.edit().putString(
-                UID_key,
-                getString(
-                        edu
-                        .umich
-                        .carlab
-                        .watchfon
-                        .R
-                        .string
-                        .uid)
-        ).apply();
-
-
-
-
-        /*****************************************************************
-         * Begin per-user customization
-         *****************************************************************/
-        mainDisplayClass = MainApp.class;
-//        triggerClass = ManualTrigger.class;
 
         /** Loading all dependencies */
         AppLoader instance = AppLoader.getInstance();
@@ -84,7 +42,7 @@ public class MainActivity extends ExperimentBaseActivity {
         });
 
 
-        instance.loadMiddlewares(new Middleware[] {
+        instance.loadMiddlewares(new Middleware[]{
                 new edu.umich.carlab.world_aligned_imu.MiddlewareImpl(),
                 new edu.umich.carlab.watchfon_speed.MiddlewareImpl(),
                 new edu.umich.carlab.watchfon_gear.MiddlewareImpl(),
@@ -98,29 +56,17 @@ public class MainActivity extends ExperimentBaseActivity {
         });
         /** End of dependencies */
 
-        experimentID = getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.experimentID);
-        version = getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.version);
-        shortname = getString(edu.umich.carlab.watchfon.R.string.shortname);
-
-        CLog.v(TAG, "Main display class = " + mainDisplayClass.getName());
-//        CLog.v(TAG, "Trigger class = " + triggerClass.getName());
 
         prefs
                 .edit()
-                .putInt(Experiment_Id, experimentID)
-                .putInt(Experiment_Version_Number, version)
-                .putString(Experiment_Shortname, shortname)
+                .putString(UID_key, getString(edu.umich.carlab.watchfon.R.string.uid))
+                .putInt(Experiment_Id, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.experimentID))
+                .putInt(Experiment_Version_Number, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.version))
+                .putString(Experiment_Shortname, getString(edu.umich.carlab.watchfon.R.string.shortname))
                 .putBoolean(Experiment_New_Version_Detected, false)
                 .putString(Main_Activity, MainActivity.class.getCanonicalName())
                 .apply();
-
-//        uiBuilder = new CarLabUIBuilder(this, contentView, personID, devAddr, version, mainDisplayClass);
         /**************************************************************/
-
-//        Utilities.scheduleOnce(this, triggerClass, 0);
-//        uiBuilder.onCreate();
-//        addManualTriggerButton();
-
     }
 
 

@@ -3,11 +3,10 @@ package edu.umich.carlab.watchfon;
 import android.content.Context;
 import android.util.Pair;
 import edu.umich.carlab.CLDataProvider;
-import edu.umich.carlab.loadable.App;
-import edu.umich.carlabui.appbases.SensorListAppBase;
-import edu.umich.carlabui.appbases.SensorStreamAppBase;
 import edu.umich.carlab.sensors.PhoneSensors;
 import edu.umich.carlab.watchfon_estimates.MiddlewareImpl;
+import edu.umich.carlabui.appbases.SensorListAppBase;
+import edu.umich.carlabui.appbases.SensorStreamAppBase;
 
 
 /**
@@ -37,6 +36,7 @@ public class MainApp extends SensorListAppBase {
         subscribe(watchfon_estimates, MiddlewareImpl.STEERING);
 
         subscribe(edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl.APP, edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl.STEERING);
-        //        addLineGraph(world_aligned_imu, edu.umich.carlab.world_aligned_imu.MiddlewareImpl.ACCEL_Y);
+
+//        addLineGraph(world_aligned_imu, edu.umich.carlab.world_aligned_imu.MiddlewareImpl.ACCEL_Y);
     }
 }

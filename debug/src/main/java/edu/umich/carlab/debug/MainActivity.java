@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         Utilities.scheduleOnce(this, triggerClass, 0);
         uiBuilder.onCreate();
         addManualTriggerButton();
-
     }
 
 
