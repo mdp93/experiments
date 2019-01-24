@@ -34,7 +34,6 @@ public class MainActivity extends ExperimentBaseActivity {
 
         /** Loading all dependencies */
         AppLoader instance = AppLoader.getInstance();
-        instance.loadApp(MainApp.class);
 
         // Estimates rely on world aligned IMU
         instance.loadApps(new Class<?>[]{

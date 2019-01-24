@@ -1,23 +1,34 @@
 package edu.umich.carlab.watchfon;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import edu.umich.carlab.CLDataProvider;
+import edu.umich.carlab.DataMarshal;
+import edu.umich.carlab.loadable.App;
 import edu.umich.carlab.sensors.PhoneSensors;
 import edu.umich.carlab.watchfon_estimates.MiddlewareImpl;
-import edu.umich.carlabui.appbases.SensorListAppBase;
-import edu.umich.carlabui.appbases.SensorStreamAppBase;
+import edu.umich.carlabui.appbases.SensorStream;
 
 
 /**
  * Created by arunganesan on 6/24/18.
  */
 
-public class MainApp extends SensorListAppBase {
-    public MainApp(CLDataProvider cl, Context context) {
+public class WatchfonAlertApp extends App {
+
+
+    public WatchfonAlertApp(CLDataProvider cl, Context context) {
         super(cl, context);
-        name = "PhoneCollectApp";
-        description = "Only phone sensors";
+
+        name = "WatchFon Unused";
+        description = "";
 
         final String watchfon_estimates = edu.umich.carlab.watchfon_estimates.MiddlewareImpl.APP;
         final String world_aligned_imu = edu.umich.carlab.world_aligned_imu.MiddlewareImpl.APP;
@@ -36,7 +47,5 @@ public class MainApp extends SensorListAppBase {
         subscribe(watchfon_estimates, MiddlewareImpl.STEERING);
 
         subscribe(edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl.APP, edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl.STEERING);
-
-//        addLineGraph(world_aligned_imu, edu.umich.carlab.world_aligned_imu.MiddlewareImpl.ACCEL_Y);
     }
 }
