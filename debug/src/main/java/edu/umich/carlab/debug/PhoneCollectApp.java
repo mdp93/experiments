@@ -3,7 +3,7 @@ package edu.umich.carlab.debug;
 import android.content.Context;
 import android.util.Pair;
 import edu.umich.carlab.CLDataProvider;
-import edu.umich.carlab.loadable.SensorListAppBase;
+import edu.umich.carlabui.appbases.SensorListAppBase;
 import edu.umich.carlab.sensors.PhoneSensors;
 import edu.umich.carlab.world_aligned_imu.MiddlewareImpl;
 
