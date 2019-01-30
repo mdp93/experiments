@@ -62,4 +62,5 @@ dependencies {
 
     implementation project(':world_aligned_imu')
     implementation project(':watchfon_intrusion_detection')
+    implementation project(':watchfon_test_suite')
 }

@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$/../middleware/watchfon_speed" />
             <option value="$PROJECT_DIR$/../middleware/watchfon_spoofed_sensors" />
             <option value="$PROJECT_DIR$/../middleware/watchfon_steering" />
+            <option value="$PROJECT_DIR$/../middleware/watchfon_test_suite" />
             <option value="$PROJECT_DIR$/../middleware/world_aligned_imu" />
           </set>
         </option>

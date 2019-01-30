@@ -47,6 +47,7 @@ public class MainActivity extends ExperimentBaseActivity {
                 edu.umich.carlab.watchfon_estimates.AppImpl.class,
                 edu.umich.carlab.watchfon_spoofed_sensors.AppImpl.class,
                 edu.umich.carlab.watchfon_intrusion_detection.AppImpl.class,
+                edu.umich.carlab.watchfon_test_suite.AppImpl.class,
         });
 
 
@@ -60,7 +61,8 @@ public class MainActivity extends ExperimentBaseActivity {
                 new edu.umich.carlab.watchfon_steering.MiddlewareImpl(),
                 new edu.umich.carlab.watchfon_estimates.MiddlewareImpl(),
                 new edu.umich.carlab.watchfon_spoofed_sensors.MiddlewareImpl(),
-                new edu.umich.carlab.watchfon_intrusion_detection.MiddlewareImpl()
+                new edu.umich.carlab.watchfon_intrusion_detection.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_test_suite.MiddlewareImpl(),
         });
         /** End of dependencies */
 
