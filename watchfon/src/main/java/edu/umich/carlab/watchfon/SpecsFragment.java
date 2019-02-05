@@ -1,18 +1,27 @@
 package edu.umich.carlab.watchfon;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import edu.umich.carlab.ManualTrigger;
+import edu.umich.carlab.io.CLTripWriter;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static edu.umich.carlab.Constants.Load_From_Trace_Key;
+import static edu.umich.carlab.Constants.ManualChoiceKey;
 
 
 /**
@@ -34,6 +43,14 @@ public class SpecsFragment extends Fragment {
     TextView statusText;
     ScrollView scroller;
     Spinner spinner;
+    JSONObject specJson;
+    SharedPreferences prefs;
+
+    String statusTextPersist = null;
+
+    // Bundle states
+    String StatusTextState = "StatusTextState";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -71,7 +88,56 @@ public class SpecsFragment extends Fragment {
         }
     }
 
+    void runSpec() {
+        try {
+            // 1. Find the trace file
+            String traceFilename = specJson.getString("trace");
+            File dumpsDir = CLTripWriter.GetDumpsDir(getContext());
+            File[] relatedDumpFiles = dumpsDir.listFiles(
+                    (File dir, String name) ->
+                            name.contains(traceFilename));
+
+            if (relatedDumpFiles.length != 1) {
+                Log.e(TAG, "Error. Please specify a precise trace filename: " + traceFilename);
+                return;
+            }
+
+            File replayDumpFile = relatedDumpFiles[0];
+            prefs.edit().putString(
+                    Load_From_Trace_Key,
+                    replayDumpFile.getCanonicalPath()).commit();
+            mListener.onFragmentInteraction(null);
+            writeAndScrolldown(String.format("Found dump file file %s", replayDumpFile.getCanonicalPath()));
+
+            // 2. Start CarLab on the trace file
+            boolean isOn = prefs.getBoolean(ManualChoiceKey, false);
+            boolean setTo = !isOn;
+            prefs.edit().putBoolean(ManualChoiceKey, setTo).commit();
+
+            getContext().sendBroadcast(new Intent(
+                    getContext(),
+                    ManualTrigger.class));
+            mListener.onFragmentInteraction(null);
+            writeAndScrolldown("Started CarLab");
+            // 3. At the right time, inject the attacks
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, e.getLocalizedMessage());
+        }
+    }
+
+    void writeAndScrolldown(String message) {
+        statusText.append("\n" + message);
+        scroller.postDelayed(
+                () -> scroller.smoothScrollTo(
+                        0,
+                        statusText.getBottom()),
+                100);
+    }
+
     void readSpecFile(File specFile) {
+        specJson = null;
+        StringBuilder specFileText = new StringBuilder();
         try {
             FileInputStream fis = new FileInputStream(specFile);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
@@ -79,6 +145,7 @@ public class SpecsFragment extends Fragment {
             try {
                 while ((line = reader.readLine()) != null) {
                     statusText.append("\n" + line);
+                    specFileText.append(line);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -90,26 +157,27 @@ public class SpecsFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-
-
+            String specFileString = specFileText.toString();
+            specJson = new JSONObject(specFileString);
         } catch (Exception e) {
-            Log.e(TAG, "Failed to read spec file");
+            Log.e(TAG, "Failed to parse spec file");
         }
-
-        scroller.smoothScrollTo(0, statusText.getBottom());
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(
+            LayoutInflater inflater,
+            ViewGroup container,
+            Bundle savedInstanceState) {
+
         View fragmentView = inflater.inflate(R.layout.fragment_specs, container, false);
-        specDir = getContext().getExternalFilesDir("specs");
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        specDir = CLTripWriter.GetSpecsDir(getContext());
 
         scroller = fragmentView.findViewById(R.id.status_scroller);
 
         statusText = fragmentView.findViewById(R.id.status_text);
-        statusText.setText("Select a spec file...\n...");
+        statusText.setText(statusTextPersist);
         statusText.setEnabled(false);
 
         Button specsButton = fragmentView.findViewById(R.id.specs_start);
@@ -117,6 +185,12 @@ public class SpecsFragment extends Fragment {
             if (!selectedTemplateFile.equals("")) {
                 File specFile = new File(specDir, selectedTemplateFile);
                 readSpecFile(specFile);
+                if (specJson == null)
+                    statusText.append("\nERROR. Unable to parse file");
+                else
+                    runSpec();
+
+                writeAndScrolldown("");
             }
         });
 
@@ -154,6 +228,12 @@ public class SpecsFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        statusTextPersist = statusText.getText().toString();
     }
 
     @Override

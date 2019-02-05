@@ -12,7 +12,9 @@
             android:roundIcon="@drawable/iconfinder_locked_1055033"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="edu.umich.carlab.watchfon.MainActivity">
+        <activity
+                android:name="edu.umich.carlab.watchfon.MainActivity"
+                android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

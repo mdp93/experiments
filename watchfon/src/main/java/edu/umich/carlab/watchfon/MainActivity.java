@@ -3,10 +3,7 @@ package edu.umich.carlab.watchfon;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 import edu.umich.carlab.clog.CLogDatabaseHelper;
 import edu.umich.carlab.io.AppLoader;
 import edu.umich.carlab.loadable.Middleware;
@@ -25,14 +22,14 @@ public class MainActivity extends ExperimentBaseActivity implements SpecsFragmen
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs
-            .edit()
-            .putString(UID_key, getString(edu.umich.carlab.watchfon.R.string.uid))
-            .putInt(Experiment_Id, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.experimentID))
-            .putInt(Experiment_Version_Number, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.version))
-            .putString(Experiment_Shortname, getString(edu.umich.carlab.watchfon.R.string.shortname))
-            .putBoolean(Experiment_New_Version_Detected, false)
-            .putString(Main_Activity, MainActivity.class.getCanonicalName())
-            .commit();
+                .edit()
+                .putString(UID_key, getString(edu.umich.carlab.watchfon.R.string.uid))
+                .putInt(Experiment_Id, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.experimentID))
+                .putInt(Experiment_Version_Number, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.version))
+                .putString(Experiment_Shortname, getString(edu.umich.carlab.watchfon.R.string.shortname))
+                .putBoolean(Experiment_New_Version_Detected, false)
+                .putString(Main_Activity, MainActivity.class.getCanonicalName())
+                .commit();
 
         super.onCreate(savedInstanceState);
 
