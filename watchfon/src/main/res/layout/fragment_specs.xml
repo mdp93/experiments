@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".SpecsFragment">
+
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+
+        <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/specs_file_selection"
+                android:layout_weight="3"
+        />
+        <Button
+                android:text="Run"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/specs_start"
+                android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <ScrollView android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#000"
+            android:layout_weight="10"
+            android:id="@+id/status_scroller">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:textColor="#fff"
+            android:fontFamily="monospace"
+            android:ems="10"
+            android:textSize="10dp"
+            android:id="@+id/status_text"
+            android:gravity="top"
+            android:padding="10dp"
+            android:textIsSelectable="false"
+    />
+</ScrollView>
+
+</LinearLayout>

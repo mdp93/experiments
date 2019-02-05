@@ -3,6 +3,10 @@ package edu.umich.carlab.watchfon;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import edu.umich.carlab.clog.CLogDatabaseHelper;
 import edu.umich.carlab.io.AppLoader;
 import edu.umich.carlab.loadable.Middleware;
@@ -10,10 +14,12 @@ import edu.umich.carlabui.ExperimentBaseActivity;
 
 import static edu.umich.carlab.Constants.*;
 
-public class MainActivity extends ExperimentBaseActivity {
+public class MainActivity extends ExperimentBaseActivity implements SpecsFragment.OnFragmentInteractionListener {
     final String TAG = "MainActivity";
 
     SharedPreferences prefs;
+    SpecsFragment specsFragment = new SpecsFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +73,10 @@ public class MainActivity extends ExperimentBaseActivity {
         /** End of dependencies */
 
         /**************************************************************/
+
+
+        addButton("Specs", (View v) -> {
+            replaceFragmentWithAnimation(specsFragment, "SpecsFragment");
+        });
     }
-
-
 }
