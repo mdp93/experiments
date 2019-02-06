@@ -1,8 +1,6 @@
 package edu.umich.carlab.watchfon;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import edu.umich.carlab.Constants;
 import edu.umich.carlab.ManualTrigger;
 import edu.umich.carlab.io.CLTripWriter;
 import org.json.JSONArray;
@@ -56,6 +55,24 @@ public class SpecsFragment extends Fragment {
     private String mParam2;
     private OnFragmentInteractionListener mListener;
 
+
+    private BroadcastReceiver doneSpecFile = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String resultFilename = intent.getStringExtra(Constants.SPEC_RESULT_FILENAME);
+            File resultFile =  new File(resultFilename);
+            JSONObject resultJson = readJSONFile(resultFile);
+            writeAndScrolldown("===================");
+            writeAndScrolldown("Finished running spec file");
+            writeAndScrolldown("-------------------");
+
+            try {
+                writeAndScrolldown(resultJson.toString(2));
+            } catch (Exception e) {
+
+            }
+        }
+    };
 
     public SpecsFragment() {
         // Required empty public constructor
@@ -123,9 +140,7 @@ public class SpecsFragment extends Fragment {
                     injectionArray.toString(2)));
 
             // 3. Start CarLab on the trace file
-            boolean isOn = prefs.getBoolean(ManualChoiceKey, false);
-            boolean setTo = !isOn;
-            prefs.edit().putBoolean(ManualChoiceKey, setTo).commit();
+            prefs.edit().putBoolean(ManualChoiceKey, true).commit();
             getContext().sendBroadcast(new Intent(
                     getContext(),
                     ManualTrigger.class));
@@ -147,16 +162,15 @@ public class SpecsFragment extends Fragment {
                 100);
     }
 
-    void readSpecFile(File specFile) {
-        specJson = null;
+    JSONObject readJSONFile(File jsonFile) {
+        JSONObject json = null;
         StringBuilder specFileText = new StringBuilder();
         try {
-            FileInputStream fis = new FileInputStream(specFile);
+            FileInputStream fis = new FileInputStream(jsonFile);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
             String line;
             try {
                 while ((line = reader.readLine()) != null) {
-                    statusText.append("\n" + line);
                     specFileText.append(line);
                 }
             } catch (IOException e) {
@@ -170,9 +184,21 @@ public class SpecsFragment extends Fragment {
                 }
             }
             String specFileString = specFileText.toString();
-            specJson = new JSONObject(specFileString);
+            json = new JSONObject(specFileString);
         } catch (Exception e) {
             Log.e(TAG, "Failed to parse spec file");
+        }
+
+        return json;
+    }
+
+    void readSpecFile(File specFile) {
+        specJson = readJSONFile(specFile);
+
+        try {
+            writeAndScrolldown(specJson.toString(2));
+        } catch (Exception e) {
+
         }
     }
 
@@ -243,9 +269,17 @@ public class SpecsFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getContext().registerReceiver(doneSpecFile, new IntentFilter(Constants.DONE_RUNNING_SPEC_FILE));
+    }
+
+
+    @Override
     public void onPause() {
         super.onPause();
         statusTextPersist = statusText.getText().toString();
+        getContext().unregisterReceiver(doneSpecFile);
     }
 
     @Override
