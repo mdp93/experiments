@@ -14,14 +14,14 @@ import android.view.ViewGroup;
 import android.widget.*;
 import edu.umich.carlab.ManualTrigger;
 import edu.umich.carlab.io.CLTripWriter;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static edu.umich.carlab.Constants.Load_From_Trace_Key;
-import static edu.umich.carlab.Constants.ManualChoiceKey;
+import static edu.umich.carlab.Constants.*;
 
 
 /**
@@ -109,17 +109,29 @@ public class SpecsFragment extends Fragment {
             mListener.onFragmentInteraction(null);
             writeAndScrolldown(String.format("Found dump file file %s", replayDumpFile.getCanonicalPath()));
 
-            // 2. Start CarLab on the trace file
+            // 2. Set the attack injection
+            JSONArray injectionArray = specJson.getJSONArray("injections");
+            JSONArray replayDuration = specJson.getJSONArray("duration");
+
+            prefs.edit()
+                    .putString(Load_Attack_From_Specs_Key, injectionArray.toString())
+                    .putFloat(Load_From_Trace_Duration_Start, (float)replayDuration.getDouble(0))
+                    .putFloat(Load_From_Trace_Duration_End, (float)replayDuration.getDouble(1))
+                    .commit();
+            writeAndScrolldown(String.format(
+                    "Loaded injections: %s",
+                    injectionArray.toString(2)));
+
+            // 3. Start CarLab on the trace file
             boolean isOn = prefs.getBoolean(ManualChoiceKey, false);
             boolean setTo = !isOn;
             prefs.edit().putBoolean(ManualChoiceKey, setTo).commit();
-
             getContext().sendBroadcast(new Intent(
                     getContext(),
                     ManualTrigger.class));
             mListener.onFragmentInteraction(null);
             writeAndScrolldown("Started CarLab");
-            // 3. At the right time, inject the attacks
+
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, e.getLocalizedMessage());
