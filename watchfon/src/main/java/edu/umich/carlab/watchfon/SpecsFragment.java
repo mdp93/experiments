@@ -115,6 +115,7 @@ public class SpecsFragment extends Fragment {
         // 2. For each of the pertinent estimators, set their parameters
         edu.umich.carlab.watchfon_steering.MiddlewareImpl watchfon_steering =
                 new edu.umich.carlab.watchfon_steering.MiddlewareImpl();
+
         watchfon_steering.setParameter(
                 c,
                 watchfon_steering.STEERING_RATIO,
@@ -124,6 +125,24 @@ public class SpecsFragment extends Fragment {
                 c,
                 watchfon_steering.VEHICLE_LENGTH,
                 PerVehicleParameters.getVehicleLength(vehicle));
+
+
+        // Fuel
+        edu.umich.carlab.watchfon_fuel.MiddlewareImpl watchfon_fuel =
+                new edu.umich.carlab.watchfon_fuel.MiddlewareImpl();
+
+        watchfon_fuel.setParameter(
+                c,
+                watchfon_fuel.AVERAGE_MPG,
+                PerVehicleParameters.getAverageMPG(vehicle)
+        );
+
+        watchfon_fuel.setParameter(
+                c,
+                watchfon_fuel.MAX_FUEL_CAPACITY,
+                PerVehicleParameters.getMaxFuelCapacity(vehicle)
+        );
+
     }
 
     void runSpec() {

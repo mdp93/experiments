@@ -409,4 +409,64 @@ public class PerVehicleParameters {
                 return 17.1f; // EXPLORER
         }
     }
+
+
+    /*
+     51 def MAX_TANK_CAPACITY(filename):
+     52     # gallons
+     53     capacity = {
+     54         ESCAPE: 15.7,
+     55         FIESTA: 12.4,
+     56         FOCUS: 12.4,
+     57         MKZ: 18.0, # differs for FWD (16.4) and AWD (18)
+     58         EXPLORER: 18.6,
+     59     }
+     60     return capacity[name_to_car(filename)]
+     61
+     62
+     */
+
+    public static Float getMaxFuelCapacity (String vehicle) {
+        switch (vehicle) {
+            case ESCAPE:
+                return 15.7f;
+            case FIESTA:
+                return 12.4f;
+            case FOCUS:
+                return 12.4f;
+            case MKZ:
+                return 18f;
+            default:
+                return 18.6f; // EXPLORER
+        }
+    }
+
+
+    /*
+     63 def AVERAGE_MPG(filename):
+     64     average = {
+     65         ESCAPE: 25,
+     66         FIESTA: (27+35)/2.0,
+     67         FOCUS: 31,
+     68         MKZ: 23, # This is much higher on crowd-sourced websites, but this is from the spec
+     69         EXPLORER: 19, # https://www.fueleconomy.gov/feg/bymodel/2016_Ford_Explorer.shtml
+     70     }
+     71     return average[name_to_car(filename)]
+     72
+     */
+
+    public static Float getAverageMPG (String vehicle) {
+        switch (vehicle) {
+            case ESCAPE:
+                return 25f;
+            case FIESTA:
+                return (float)(27 + 35)/2.0f;
+            case FOCUS:
+                return 31f;
+            case MKZ:
+                return 23f;
+            default:
+                return 19f; // EXPLORER
+        }
+    }
 }
