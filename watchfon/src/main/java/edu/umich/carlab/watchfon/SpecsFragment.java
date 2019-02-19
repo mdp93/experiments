@@ -160,6 +160,11 @@ public class SpecsFragment extends Fragment {
                 PerVehicleParameters.getFinalDriveRatio(vehicle)
         );
 
+        watchfon_rpm.setParameter(
+                c,
+                watchfon_rpm.VEHICLE_NAME,
+                vehicle
+        );
     }
 
     void runSpec() {
