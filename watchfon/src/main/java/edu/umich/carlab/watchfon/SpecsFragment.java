@@ -13,6 +13,7 @@ import android.widget.*;
 import edu.umich.carlab.Constants;
 import edu.umich.carlab.ManualTrigger;
 import edu.umich.carlab.io.CLTripWriter;
+import edu.umich.carlab.watchfon_steering.MiddlewareImpl;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -105,6 +106,26 @@ public class SpecsFragment extends Fragment {
         }
     }
 
+    void initializeParameters(String traceBasename) {
+        Context c = getContext();
+
+        // 1. Get the vehicle
+        String vehicle = PerVehicleParameters.getVehicle(traceBasename);
+
+        // 2. For each of the pertinent estimators, set their parameters
+        edu.umich.carlab.watchfon_steering.MiddlewareImpl watchfon_steering =
+                new edu.umich.carlab.watchfon_steering.MiddlewareImpl();
+        watchfon_steering.setParameter(
+                c,
+                watchfon_steering.STEERING_RATIO,
+                PerVehicleParameters.getSteeringRatio(vehicle));
+
+        watchfon_steering.setParameter(
+                c,
+                watchfon_steering.VEHICLE_LENGTH,
+                PerVehicleParameters.getVehicleLength(vehicle));
+    }
+
     void runSpec() {
         try {
             // 1. Find the trace file
@@ -115,9 +136,11 @@ public class SpecsFragment extends Fragment {
                             name.contains(traceFilename));
 
             if (relatedDumpFiles.length != 1) {
-                Log.e(TAG, "Error. Please specify a precise trace filename: " + traceFilename);
+                Log.e(TAG, "Error. Please specify a precise trace filename or file doesn't exist: " + traceFilename);
                 return;
             }
+
+            initializeParameters(traceFilename);
 
             File replayDumpFile = relatedDumpFiles[0];
             prefs.edit().putString(
