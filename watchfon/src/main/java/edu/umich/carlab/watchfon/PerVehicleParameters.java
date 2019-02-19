@@ -386,8 +386,7 @@ public class PerVehicleParameters {
             case MKZ:
                 lengthInches = 193.9;
                 break;
-            default:
-                // Explorer
+            default: // Explorer
                 lengthInches = 198.3;
                 break;
         }
@@ -405,8 +404,8 @@ public class PerVehicleParameters {
                 return 18f;
             case MKZ:
                 return 14.8f;
-            default:
-                return 17.1f; // EXPLORER
+            default: // Explorer
+                return 17.1f;
         }
     }
 
@@ -436,8 +435,8 @@ public class PerVehicleParameters {
                 return 12.4f;
             case MKZ:
                 return 18f;
-            default:
-                return 18.6f; // EXPLORER
+            default: // Explorer
+                return 18.6f;
         }
     }
 
@@ -465,8 +464,110 @@ public class PerVehicleParameters {
                 return 31f;
             case MKZ:
                 return 23f;
-            default:
-                return 19f; // EXPLORER
+            default: // Explorer
+                return 19f;
+        }
+    }
+
+
+    /*
+     final double INCHES_TO_METERS = 0.0254;
+    final double IDLE_RPM = 800;
+
+    float FINAL_DRIVE_RATIO = 3.36f;
+    final double TIRE_DIAM = (245 / 1000.0 * 45 / 100.0) * 2 + (18 * INCHES_TO_METERS);
+    float TIRE_CIRCUM = (float)(TIRE_DIAM * Math.PI / 1000.0);
+     */
+
+
+    /*
+    118
+119 def code_to_circumference(p, slash, r):
+120     # p in mm
+121     # slash = percentage from rim to end of rubber
+122     # r = diameter of rim in inches
+123     diam = (p/1000.0 * slash / 100.0) * 2 + (r * INCHES_TO_METERS)
+124     circum = diam * np.pi
+125     return circum / 1000.0
+126
+     */
+
+
+    static float code_to_circumference (int p, int slash, int r) {
+        // p in mm
+        // slash = percentage from rim to end of rubber
+        // r = diameter of rim in inches
+
+        double diam = (p / 1000.0 * slash / 100.0) * 2 + (r + INCHES_TO_METERS);
+        double circum = diam * Math.PI;
+        return (float)(circum / 1000.0);
+    }
+
+    /*
+
+127 def TIRE_CIRCUMFERENCE(filename):
+128     # returns in KM
+129     circumferences = {
+130         ESCAPE: code_to_circumference(p=235, slash=45, r=19), # could also be p235/55r17,
+131         FIESTA: code_to_circumference(p=195, slash=50, r=16), # could also be 185/65r15, 195/55r15, 195/50r16, 195/50r16
+132         FOCUS: code_to_circumference(p=215, slash=55, r=16), # other candidates: 195/65r15, 215/50r17, 215/50r17, 235/40r18
+133         MKZ: code_to_circumference(p=245, slash=45, r=18), # other candidate: 245/40r19
+134         EXPLORER: code_to_circumference(p=245, slash=60, r=18), # could be: 255/50r20
+135     }
+136
+     */
+    public static Float getTireCircum (String vehicle) {
+        switch (vehicle) {
+            case ESCAPE:
+                return code_to_circumference(235, 45, 19);
+            case FIESTA:
+                return code_to_circumference(195, 50, 16);
+            case FOCUS:
+                return code_to_circumference(215, 55, 16);
+            case MKZ:
+                return code_to_circumference(245, 45, 18);
+            default: // Explorer
+                return code_to_circumference(245, 60, 18);
+        }
+    }
+
+    /*
+    138
+139 def FINAL_DRIVE_RATIO(filename, gear):
+140     ratios = {
+141         ESCAPE: 3.51, # could also be 3.21 or 3.07
+142         #FIESTA: 4.07,
+143         # FIESTA: 3.89 for gears 1, 2, 5, and 6. 4.35 for gears 3 4 and -1
+144         # FOCUS: 4.06
+145         FOCUS: 3.82,
+146         MKZ: 3.36, # AWD MKZ
+147         EXPLORER: 3.16,
+148     }
+149
+150
+151     model = name_to_car(filename)
+152     if model == FIESTA:
+153         if gear in [1,2,5,6]:
+154             return 3.89
+155         else: return 4.35
+156     else:
+157         return ratios[name_to_car(filename)]
+~
+~
+     */
+
+    public static Float getFinalDriveRatio (String vehicle) {
+        switch (vehicle) {
+            case ESCAPE:
+                return 3.51f;
+            case FIESTA:
+                return (3.89f + 4.34f)/2.0f; // This isn't quite right. See above.
+            case FOCUS:
+                return 3.82f;
+            case MKZ:
+                return 3.36f;
+            default: // Explorer
+                return 3.16f;
         }
     }
 }

@@ -143,6 +143,23 @@ public class SpecsFragment extends Fragment {
                 PerVehicleParameters.getMaxFuelCapacity(vehicle)
         );
 
+        // RPM related
+        edu.umich.carlab.watchfon_rpm.MiddlewareImpl watchfon_rpm =
+                new edu.umich.carlab.watchfon_rpm.MiddlewareImpl();
+
+        watchfon_rpm.setParameter(
+                c,
+                watchfon_rpm.TIRE_CIRCUMFERENCE,
+                PerVehicleParameters.getTireCircum(vehicle)
+        );
+
+
+        watchfon_rpm.setParameter(
+                c,
+                watchfon_rpm.FINAL_DRIVE_RATIO,
+                PerVehicleParameters.getFinalDriveRatio(vehicle)
+        );
+
     }
 
     void runSpec() {
