@@ -165,6 +165,16 @@ public class SpecsFragment extends Fragment {
                 watchfon_rpm.VEHICLE_NAME,
                 vehicle
         );
+
+        // Gear
+        edu.umich.carlab.watchfon_gear.MiddlewareImpl watchfon_gear =
+                new edu.umich.carlab.watchfon_gear.MiddlewareImpl();
+
+        watchfon_gear.setParameter(
+                c,
+                watchfon_gear.VEHICLE_NAME,
+                vehicle
+        );
     }
 
     void runSpec() {

@@ -5,11 +5,13 @@ import java.util.Arrays;
 public class PerVehicleParameters {
     final static double INCHES_TO_METERS = 0.0254;
 
-    public final static String ESCAPE = "escape";
-    public final static String FIESTA = "fiesta";
-    public final static String FOCUS = "focus";
-    public final static String MKZ = "mkz";
-    public final static String EXPLORER = "explorer";
+    public final static String ESCAPE1 = "Ford Escape 2017";
+    public final static String ESCAPE2 = "Ford Escape 2017 #2";
+    public final static String FIESTA = "Ford Fiesta 2017";
+    public final static String FOCUS2016 = "Ford Focus Hatchback 2016";
+    public final static String FOCUS2012 = "Focus 2012";
+    public final static String MKZ = "MKZ";
+    public final static String EXPLORER = "Explorer 2016";
 
     static String getPilotCar (String basename) {
         if (basename.contains("10482")) return EXPLORER;
@@ -134,13 +136,13 @@ public class PerVehicleParameters {
         else if (basename.contains("20879")) return MKZ;
         else if (basename.contains("20880")) return MKZ;
         else if (basename.contains("20881")) return MKZ;
-        else if (basename.contains("20882")) return FOCUS;
+        else if (basename.contains("20882")) return FOCUS2012;
         else if (basename.contains("20883")) return MKZ;
         else if (basename.contains("20884")) return MKZ;
         else if (basename.contains("20885")) return MKZ;
         else if (basename.contains("20886")) return MKZ;
         else if (basename.contains("20887")) return MKZ;
-        else if (basename.contains("20888")) return FOCUS;
+        else if (basename.contains("20888")) return FOCUS2012;
         else if (basename.contains("20889")) return MKZ;
         else if (basename.contains("20890")) return MKZ;
         else if (basename.contains("20891")) return MKZ;
@@ -175,7 +177,7 @@ public class PerVehicleParameters {
         else if (basename.contains("20953")) return MKZ;
         else if (basename.contains("20954")) return MKZ;
         else if (basename.contains("20955")) return MKZ;
-        else if (basename.contains("20956")) return FOCUS;
+        else if (basename.contains("20956")) return FOCUS2012;
         else if (basename.contains("20959")) return MKZ;
         else if (basename.contains("20960")) return MKZ;
         else if (basename.contains("20977")) return EXPLORER;
@@ -191,9 +193,9 @@ public class PerVehicleParameters {
         else if (basename.contains("20990")) return MKZ;
         else if (basename.contains("20991")) return MKZ;
         else if (basename.contains("20992")) return MKZ;
-        else if (basename.contains("20993")) return FOCUS;
-        else if (basename.contains("20994")) return FOCUS;
-        else if (basename.contains("20995")) return FOCUS;
+        else if (basename.contains("20993")) return FOCUS2012;
+        else if (basename.contains("20994")) return FOCUS2012;
+        else if (basename.contains("20995")) return FOCUS2012;
         else if (basename.contains("20997")) return EXPLORER;
         else if (basename.contains("20998")) return EXPLORER;
         else if (basename.contains("21004")) return EXPLORER;
@@ -225,17 +227,17 @@ public class PerVehicleParameters {
         else if (basename.contains("21039")) return EXPLORER;
         else if (basename.contains("21040")) return EXPLORER;
         else if (basename.contains("21041")) return EXPLORER;
-        else if (basename.contains("21044")) return FOCUS;
-        else if (basename.contains("21045")) return FOCUS;
-        else if (basename.contains("21046")) return FOCUS;
+        else if (basename.contains("21044")) return FOCUS2012;
+        else if (basename.contains("21045")) return FOCUS2012;
+        else if (basename.contains("21046")) return FOCUS2012;
         else if (basename.contains("21047")) return MKZ;
         else if (basename.contains("21048")) return MKZ;
         else if (basename.contains("21049")) return MKZ;
         else if (basename.contains("21050")) return MKZ;
         else if (basename.contains("21051")) return MKZ;
-        else if (basename.contains("21052")) return FOCUS;
-        else if (basename.contains("21053")) return FOCUS;
-        else if (basename.contains("21054")) return FOCUS;
+        else if (basename.contains("21052")) return FOCUS2012;
+        else if (basename.contains("21053")) return FOCUS2012;
+        else if (basename.contains("21054")) return FOCUS2012;
         else if (basename.contains("21056")) return MKZ;
         else if (basename.contains("21057")) return MKZ;
         else if (basename.contains("21058")) return MKZ;
@@ -255,9 +257,9 @@ public class PerVehicleParameters {
         else if (basename.contains("21102")) return MKZ;
         else if (basename.contains("21104")) return MKZ;
         else if (basename.contains("21110")) return MKZ;
-        else if (basename.contains("21115")) return FOCUS;
-        else if (basename.contains("21116")) return FOCUS;
-        else if (basename.contains("21117")) return FOCUS;
+        else if (basename.contains("21115")) return FOCUS2012;
+        else if (basename.contains("21116")) return FOCUS2012;
+        else if (basename.contains("21117")) return FOCUS2012;
         else if (basename.contains("21118")) return EXPLORER;
         else if (basename.contains("21119")) return EXPLORER;
         else if (basename.contains("21120")) return EXPLORER;
@@ -269,18 +271,18 @@ public class PerVehicleParameters {
         else if (basename.contains("21126")) return EXPLORER;
         else if (basename.contains("21127")) return EXPLORER;
         else if (basename.contains("21128")) return EXPLORER;
-        else if (basename.contains("21129")) return FOCUS;
-        else if (basename.contains("21130")) return FOCUS;
-        else if (basename.contains("21131")) return FOCUS;
-        else if (basename.contains("21132")) return FOCUS;
-        else if (basename.contains("21133")) return FOCUS;
-        else if (basename.contains("21134")) return FOCUS;
-        else if (basename.contains("21135")) return FOCUS;
-        else if (basename.contains("21136")) return FOCUS;
-        else if (basename.contains("21137")) return FOCUS;
-        else if (basename.contains("21138")) return FOCUS;
-        else if (basename.contains("21139")) return FOCUS;
-        else if (basename.contains("21140")) return FOCUS;
+        else if (basename.contains("21129")) return FOCUS2012;
+        else if (basename.contains("21130")) return FOCUS2012;
+        else if (basename.contains("21131")) return FOCUS2012;
+        else if (basename.contains("21132")) return FOCUS2012;
+        else if (basename.contains("21133")) return FOCUS2012;
+        else if (basename.contains("21134")) return FOCUS2012;
+        else if (basename.contains("21135")) return FOCUS2012;
+        else if (basename.contains("21136")) return FOCUS2012;
+        else if (basename.contains("21137")) return FOCUS2012;
+        else if (basename.contains("21138")) return FOCUS2012;
+        else if (basename.contains("21139")) return FOCUS2012;
+        else if (basename.contains("21140")) return FOCUS2012;
         else if (basename.contains("21141")) return EXPLORER;
         else if (basename.contains("21142")) return EXPLORER;
         else if (basename.contains("21143")) return EXPLORER;
@@ -293,21 +295,21 @@ public class PerVehicleParameters {
         else if (basename.contains("21150")) return EXPLORER;
         else if (basename.contains("21151")) return EXPLORER;
         else if (basename.contains("21152")) return EXPLORER;
-        else if (basename.contains("21153")) return FOCUS;
-        else if (basename.contains("21154")) return FOCUS;
-        else if (basename.contains("21155")) return FOCUS;
-        else if (basename.contains("21156")) return FOCUS;
-        else if (basename.contains("21157")) return FOCUS;
-        else if (basename.contains("21158")) return FOCUS;
-        else if (basename.contains("21159")) return FOCUS;
-        else if (basename.contains("21160")) return FOCUS;
-        else if (basename.contains("21161")) return FOCUS;
-        else if (basename.contains("21162")) return FOCUS;
-        else if (basename.contains("21163")) return FOCUS;
-        else if (basename.contains("21164")) return FOCUS;
-        else if (basename.contains("21165")) return FOCUS;
-        else if (basename.contains("21166")) return FOCUS;
-        else if (basename.contains("21168")) return FOCUS;
+        else if (basename.contains("21153")) return FOCUS2012;
+        else if (basename.contains("21154")) return FOCUS2012;
+        else if (basename.contains("21155")) return FOCUS2012;
+        else if (basename.contains("21156")) return FOCUS2012;
+        else if (basename.contains("21157")) return FOCUS2012;
+        else if (basename.contains("21158")) return FOCUS2012;
+        else if (basename.contains("21159")) return FOCUS2012;
+        else if (basename.contains("21160")) return FOCUS2012;
+        else if (basename.contains("21161")) return FOCUS2012;
+        else if (basename.contains("21162")) return FOCUS2012;
+        else if (basename.contains("21163")) return FOCUS2012;
+        else if (basename.contains("21164")) return FOCUS2012;
+        else if (basename.contains("21165")) return FOCUS2012;
+        else if (basename.contains("21166")) return FOCUS2012;
+        else if (basename.contains("21168")) return FOCUS2012;
         else if (basename.contains("21169")) return EXPLORER;
         else if (basename.contains("21170")) return EXPLORER;
         else if (basename.contains("21171")) return EXPLORER;
@@ -349,24 +351,28 @@ public class PerVehicleParameters {
     }
 
     public static String getVehicle (String basename) {
-        String [] ESCAPE_ORIGINAL = { "T47", "T48", "T50", "T51",
+        String [] ESCAPE1_ORIGINAL = { "T47", "T48", "T50", "T51",
                                     "T52", "T64",
-                                    "T60", "T61", "T62", "T63",
-                                    "T55", "T57" };
+                                    "T60", "T61", "T62", "T63"};
+
+        String [] ESCAPE2_ORIGINAL = { "T55", "T57" };
+
         String [] FIESTA_ORIGINAL = { "T53", "T54" };
-        String [] FOCUS_ORIGINAL = { "T58", "T59" };
+        String [] FOCUS2016_ORIGINAL = { "T58", "T59" };
 
         if (basename.contains("-pilot")) return getPilotCar(basename);
         else if (basename.contains("-placement")) return MKZ;
 
         // Else it is the original set of trips
-        else if (Arrays.asList(ESCAPE_ORIGINAL).contains(basename))
-            return ESCAPE;
+        else if (Arrays.asList(ESCAPE1_ORIGINAL).contains(basename))
+            return ESCAPE1;
+        else if (Arrays.asList(ESCAPE2_ORIGINAL).contains(basename))
+            return ESCAPE2;
         else if (Arrays.asList(FIESTA_ORIGINAL).contains(basename))
             return FIESTA;
 
         // Else
-        return FOCUS;
+        return FOCUS2016;
     }
 
 
@@ -374,13 +380,15 @@ public class PerVehicleParameters {
         Double lengthInches = 0.0;
 
         switch (vehicle) {
-            case ESCAPE:
+            case ESCAPE1:
+            case ESCAPE2:
                 lengthInches = 178.1;
                 break;
             case FIESTA:
                 lengthInches = 159.7;
                 break;
-            case FOCUS:
+            case FOCUS2012:
+            case FOCUS2016:
                 lengthInches = 171.7;
                 break;
             case MKZ:
@@ -396,11 +404,13 @@ public class PerVehicleParameters {
 
     public static Float getSteeringRatio (String vehicle) {
         switch (vehicle) {
-            case ESCAPE:
+            case ESCAPE1:
+            case ESCAPE2:
                 return 15.2f;
             case FIESTA:
                 return 14.25f;
-            case FOCUS:
+            case FOCUS2012:
+            case FOCUS2016:
                 return 18f;
             case MKZ:
                 return 14.8f;
@@ -427,11 +437,13 @@ public class PerVehicleParameters {
 
     public static Float getMaxFuelCapacity (String vehicle) {
         switch (vehicle) {
-            case ESCAPE:
+            case ESCAPE1:
+            case ESCAPE2:
                 return 15.7f;
             case FIESTA:
                 return 12.4f;
-            case FOCUS:
+            case FOCUS2012:
+            case FOCUS2016:
                 return 12.4f;
             case MKZ:
                 return 18f;
@@ -456,11 +468,13 @@ public class PerVehicleParameters {
 
     public static Float getAverageMPG (String vehicle) {
         switch (vehicle) {
-            case ESCAPE:
+            case ESCAPE1:
+            case ESCAPE2:
                 return 25f;
             case FIESTA:
                 return (float)(27 + 35)/2.0f;
-            case FOCUS:
+            case FOCUS2012:
+            case FOCUS2016:
                 return 31f;
             case MKZ:
                 return 23f;
@@ -518,11 +532,13 @@ public class PerVehicleParameters {
      */
     public static Float getTireCircum (String vehicle) {
         switch (vehicle) {
-            case ESCAPE:
+            case ESCAPE1:
+            case ESCAPE2:
                 return code_to_circumference(235, 45, 19);
             case FIESTA:
                 return code_to_circumference(195, 50, 16);
-            case FOCUS:
+            case FOCUS2012:
+            case FOCUS2016:
                 return code_to_circumference(215, 55, 16);
             case MKZ:
                 return code_to_circumference(245, 45, 18);
@@ -558,11 +574,13 @@ public class PerVehicleParameters {
 
     public static Float getFinalDriveRatio (String vehicle) {
         switch (vehicle) {
-            case ESCAPE:
+            case ESCAPE1:
+            case ESCAPE2:
                 return 3.51f;
             case FIESTA:
                 return (3.89f + 4.34f)/2.0f; // This isn't quite right. See above.
-            case FOCUS:
+            case FOCUS2012:
+            case FOCUS2016:
                 return 3.82f;
             case MKZ:
                 return 3.36f;
