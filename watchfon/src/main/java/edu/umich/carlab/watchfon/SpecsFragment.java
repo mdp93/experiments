@@ -106,6 +106,14 @@ public class SpecsFragment extends Fragment {
         }
     }
 
+    /**
+     * Loads the individual vehicle parameters for this basename. Each trace was collected from a specific vehicle, so
+     * the estimation algorithms need to use the parameters for that specific vehicle, for example, the vehicle length.
+     *
+     * In general, this uses the "setParameters()" feature of the middleware classes to load in settings.
+     *
+     * @param traceBasename The filename of the trace file
+     */
     void initializeParameters(String traceBasename) {
         Context c = getContext();
 
@@ -193,6 +201,7 @@ public class SpecsFragment extends Fragment {
 
             initializeParameters(traceFilename);
 
+            // This sets the trace file so we load from that instead of starting sensors
             File replayDumpFile = relatedDumpFiles[0];
             prefs.edit().putString(
                     Load_From_Trace_Key,
