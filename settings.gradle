@@ -3,7 +3,11 @@ include ':debug', ':watchfon',
         ':world_aligned_imu', ':watchfon_speed', ':watchfon_steering',
         ':watchfon_rpm', ':watchfon_odometer', ':watchfon_fuel',
         ':watchfon_gear', ':watchfon_spoofed_sensors', ':watchfon_intrusion_detection',
-        ':watchfon_estimates', ':librecan', ':librecan_middleware', ':watchfon_test_suite'
+        ':watchfon_estimates', ':librecan', ':librecan_middleware', ':watchfon_test_suite',
+        ':wf_sensors'
+        
+        //, ':wf_speed', ':wf_steer', ':wf_odometer', ':wf_fuel', ':wf_rpm', 
+        //':wf_gear', ':wf_all_estimators'
 
 project(':libcarlab').projectDir = new File(settingsDir, '../carlab/libcarlab')
 project(':carlabui').projectDir = new File(settingsDir, '../carlab/carlabui')
