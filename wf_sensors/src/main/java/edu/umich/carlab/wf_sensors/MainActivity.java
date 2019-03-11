@@ -19,19 +19,13 @@ public class MainActivity extends ExperimentBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefs
-                .edit()
-                .putString(UID_key, getString(edu.umich.carlab.wf_sensors.R.string.uid))
-                .putInt(Experiment_Id, getApplication().getResources().getInteger(edu.umich.carlab.wf_sensors.R.integer.experimentID))
-                .putInt(Experiment_Version_Number, getApplication().getResources().getInteger(edu.umich.carlab.wf_sensors.R.integer.version))
-                .putString(Experiment_Shortname, getString(edu.umich.carlab.wf_sensors.R.string.shortname))
-                .putBoolean(Experiment_New_Version_Detected, false)
+        prefs.edit()
+                .putBoolean(LIVE_MODE, true)
                 .putString(Main_Activity, MainActivity.class.getCanonicalName())
                 .commit();
 
         super.onCreate(savedInstanceState);
 
-        CLogDatabaseHelper.initializeIfNeeded(this);
         AppLoader instance = AppLoader.getInstance();
         instance.loadApp( AppImpl.class );
     }

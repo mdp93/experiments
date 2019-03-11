@@ -10,12 +10,13 @@ import edu.umich.carlab.sensors.PhoneSensors;
 import edu.umich.carlabui.appbases.SensorListAppBase;
 
 
-public class AppImpl extends App {
+public class AppImpl extends SensorListAppBase {
     final String TAG = "AppImpl";
 
 
     public AppImpl(CLDataProvider cl, Context context) {
         super(cl, context);
+        foregroundApp = true;
         name = "wf_sensors_app_impl";
         subscribe(PhoneSensors.DEVICE, PhoneSensors.GRAVITY);
         subscribe(PhoneSensors.DEVICE, PhoneSensors.MAGNET);
