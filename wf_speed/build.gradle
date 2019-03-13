@@ -69,7 +69,5 @@ dependencies {
 //    implementation project(':watchfon_steering')
     implementation project(':watchfon_speed')
 //    implementation project(':watchfon_odometer')
-//    implementation project(':watchfon_estimates')
-//    implementation project(':watchfon_spoofed_sensors')
 //    implementation project(':world_aligned_imu')
 }

@@ -1,12 +1,9 @@
 package edu.umich.carlab.wf_steer;
 
 import android.content.Context;
-import android.hardware.SensorManager;
-import android.util.Pair;
 import edu.umich.carlab.CLDataProvider;
 import edu.umich.carlab.DataMarshal;
-import edu.umich.carlab.loadable.App;
-import edu.umich.carlab.sensors.PhoneSensors;
+import edu.umich.carlab.watchfon_steering.MiddlewareImpl;
 import edu.umich.carlabui.appbases.SensorListAppBase;
 
 
@@ -18,11 +15,7 @@ public class AppImpl extends SensorListAppBase {
         super(cl, context);
         foregroundApp = true;
         name = "wf_steer_app_impl";
-        subscribe(PhoneSensors.DEVICE, PhoneSensors.GRAVITY);
-        subscribe(PhoneSensors.DEVICE, PhoneSensors.MAGNET);
-        subscribe(PhoneSensors.DEVICE, PhoneSensors.GYRO);
-        subscribe(PhoneSensors.DEVICE, PhoneSensors.ACCEL);
-        subscribe(PhoneSensors.DEVICE, PhoneSensors.GPS);
+        subscribe(MiddlewareImpl.APP, MiddlewareImpl.STEERING);
     }
 
 
