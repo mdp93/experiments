@@ -62,4 +62,6 @@ dependencies {
 
     implementation project(':carlabui')
     implementation project(':libcarlab')
+
+    implementation project(':watchfon_odometer')
 }

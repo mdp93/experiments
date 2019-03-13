@@ -62,4 +62,7 @@ dependencies {
 
     implementation project(':carlabui')
     implementation project(':libcarlab')
+
+    implementation project(':watchfon_gear')
+    implementation project(':watchfon_speed')
 }

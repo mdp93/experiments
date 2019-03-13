@@ -2,7 +2,6 @@ package edu.umich.carlab.wf_steer;
 
 import android.content.Context;
 import edu.umich.carlab.CLDataProvider;
-import edu.umich.carlab.DataMarshal;
 import edu.umich.carlab.watchfon_steering.MiddlewareImpl;
 import edu.umich.carlabui.appbases.SensorListAppBase;
 
