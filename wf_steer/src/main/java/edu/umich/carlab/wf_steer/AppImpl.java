@@ -17,10 +17,4 @@ public class AppImpl extends SensorListAppBase {
         name = "wf_steer_app_impl";
         subscribe(MiddlewareImpl.APP, MiddlewareImpl.STEERING);
     }
-
-
-    @Override
-    public void newData(DataMarshal.DataObject dObject) {
-        super.newData(dObject);
-    }
 }

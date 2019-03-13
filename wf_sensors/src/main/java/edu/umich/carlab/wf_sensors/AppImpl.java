@@ -24,10 +24,4 @@ public class AppImpl extends SensorListAppBase {
         subscribe(PhoneSensors.DEVICE, PhoneSensors.ACCEL);
         subscribe(PhoneSensors.DEVICE, PhoneSensors.GPS);
     }
-
-
-    @Override
-    public void newData(DataMarshal.DataObject dObject) {
-        super.newData(dObject);
-    }
 }

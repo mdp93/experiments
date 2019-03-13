@@ -21,6 +21,7 @@ public class MainActivity extends ExperimentBaseActivity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.edit()
                 .putBoolean(LIVE_MODE, true)
+                .putString(Experiment_Shortname, getString(R.string.app_name))
                 .putString(Main_Activity, MainActivity.class.getCanonicalName())
                 .commit();
 
