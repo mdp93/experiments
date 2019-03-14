@@ -24,6 +24,7 @@ public class MainActivity extends ExperimentBaseActivity implements SpecsFragmen
         prefs
                 .edit()
                 .putString(UID_key, getString(edu.umich.carlab.watchfon.R.string.uid))
+                .putBoolean(LIVE_MODE, true)
                 .putInt(Experiment_Id, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.experimentID))
                 .putInt(Experiment_Version_Number, getApplication().getResources().getInteger(edu.umich.carlab.watchfon.R.integer.version))
                 .putString(Experiment_Shortname, getString(edu.umich.carlab.watchfon.R.string.shortname))
