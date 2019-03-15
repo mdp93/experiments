@@ -54,7 +54,6 @@ public class MainActivity extends ExperimentBaseActivity implements SpecsFragmen
                 edu.umich.carlab.watchfon_test_suite.AppImpl.class,
         });
 
-
         instance.loadMiddlewares(new Middleware[]{
                 new edu.umich.carlab.world_aligned_imu.MiddlewareImpl(),
                 new edu.umich.carlab.watchfon_speed.MiddlewareImpl(),
@@ -69,7 +68,6 @@ public class MainActivity extends ExperimentBaseActivity implements SpecsFragmen
                 new edu.umich.carlab.watchfon_test_suite.MiddlewareImpl(),
         });
         /** End of dependencies */
-
         /**************************************************************/
 
 

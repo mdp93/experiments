@@ -10,7 +10,6 @@
             <option value="$PROJECT_DIR$/../carlab/carlabui" />
             <option value="$PROJECT_DIR$/../carlab/libcarlab" />
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/debug" />
             <option value="$PROJECT_DIR$/librecan" />
             <option value="$PROJECT_DIR$/watchfon" />
             <option value="$PROJECT_DIR$/wf_all_estimators" />

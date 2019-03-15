@@ -1,4 +1,4 @@
-include ':debug', ':watchfon',
+include ':watchfon',
         ':libcarlab', ':carlabui',
         ':world_aligned_imu', ':watchfon_speed', ':watchfon_steering',
         ':watchfon_rpm', ':watchfon_odometer', ':watchfon_fuel',
@@ -6,6 +6,8 @@ include ':debug', ':watchfon',
         ':watchfon_estimates', ':librecan', ':librecan_middleware', ':watchfon_test_suite',
         ':wf_sensors', ':wf_speed', ':wf_steer', ':wf_odometer', ':wf_fuel', ':wf_rpm', 
         ':wf_gear', ':wf_all_estimators'
+
+// ':debug' --> this one has problems we we'll remove it for now
 
 project(':libcarlab').projectDir = new File(settingsDir, '../carlab/libcarlab')
 project(':carlabui').projectDir = new File(settingsDir, '../carlab/carlabui')

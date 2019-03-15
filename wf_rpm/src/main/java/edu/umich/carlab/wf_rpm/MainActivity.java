@@ -30,11 +30,13 @@ public class MainActivity extends ExperimentBaseActivity {
                 AppImpl.class,
                 edu.umich.carlab.watchfon_speed.AppImpl.class,
                 edu.umich.carlab.watchfon_gear.AppImpl.class,
+                edu.umich.carlab.watchfon_rpm.AppImpl.class,
         });
 
         instance.loadMiddlewares(new Middleware[]{
                 new edu.umich.carlab.watchfon_speed.MiddlewareImpl(),
                 new edu.umich.carlab.watchfon_gear.MiddlewareImpl(),
+                new edu.umich.carlab.watchfon_rpm.MiddlewareImpl(),
         });
     }
 }
